@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>TitleBar.qml</file>
+        <file>searchWorker.js</file>
+    </qresource>
+</RCC>

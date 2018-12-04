@@ -1,7 +1,6 @@
 branches:
   only:
     - master
-    - devel
 
 install:
   - set QT5=C:\Qt\5.11.2\mingw53_32

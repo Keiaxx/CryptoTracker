@@ -1,0 +1,23 @@
+branches:
+  only:
+    - master
+    - devel
+
+install:
+  - set QT5=C:\Qt\5.11.2\mingw53_32
+  - set MINGW=C:\Qt\Tools\mingw530_32
+  - set PATH=%MINGW%\bin;%QT5%\bin;%PATH%
+build_script:
+  - qmake CryptoTracker.pro
+  - mingw32-make
+after_build:
+  - windeployqt -qmldir . .\release\CryptoTracker.exe
+  - cmd: cp %QT5%\bin\libgcc_s_dw2-1.dll .\release\
+  - cmd: cp %QT5%\bin\libstdc++-6.dll .\release\
+  - cmd: cp %QT5%\bin\libwinpthread-1.dll .\release\
+  - rm release/*.o
+  - rm release/*.cpp
+  
+artifacts:
+  - path: release
+    type: zip

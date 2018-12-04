@@ -22,7 +22,7 @@ Window {
 
     color: "transparent"
 
-    property var baseColor: Material.Purple
+    property var baseColor: Material.Grey
 
     readonly property string wsbase: "wss://stream.binance.com:9443/stream?streams="
 

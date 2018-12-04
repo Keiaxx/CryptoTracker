@@ -1,7 +1,6 @@
 #include "cursorposprovider.h"
 
 #include <QGuiApplication>
-#include <QApplication>
 #include <QQmlApplicationEngine>
 #include <QDebug>
 #include <QQmlContext>
@@ -12,7 +11,7 @@ int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
-    QApplication app(argc, argv);
+    QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
 

@@ -13,6 +13,8 @@ after_build:
   - windeployqt -qmldir . .\release\CryptoTracker.exe
   - cmd: cp %QT5%\bin\libgcc_s_dw2-1.dll .\release\
   - cmd: cp %QT5%\bin\libstdc++-6.dll .\release\
+  - cmd: cp .\libs\libeay32.dll .\release\
+  - cmd: cp .\libs\ssleay32.dll .\release\
   - cmd: cp %QT5%\bin\libwinpthread-1.dll .\release\
   - rm release/*.o
   - rm release/*.cpp

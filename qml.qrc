@@ -3,5 +3,6 @@
         <file>main.qml</file>
         <file>TitleBar.qml</file>
         <file>searchWorker.js</file>
+        <file>TickerView.qml</file>
     </qresource>
 </RCC>

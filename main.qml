@@ -4,7 +4,6 @@ import QtQuick.Controls 2.4
 import QtWebSockets 1.0
 import QtQuick.Layouts 1.3
 import QtQuick.Controls.Material 2.3
-import QtCharts 2.2
 
 Window {
     id: root
@@ -20,9 +19,10 @@ Window {
 
     opacity: slider.value
 
+
     color: "transparent"
 
-    property var baseColor: Material.Grey
+    property var baseColor: Material.Purple
 
     readonly property string wsbase: "wss://stream.binance.com:9443/stream?streams="
 
@@ -43,6 +43,8 @@ Window {
         height: 20
         container: root
 
+        radius: 2
+
         color: Material.color(baseColor, Material.Shade900)
 
         Row{
@@ -53,6 +55,8 @@ Window {
                 anchors.margins: 2
                 height: parent.height
                 width: parent.height
+
+
 
                 text: "O"
 
@@ -74,7 +78,8 @@ Window {
                 text: "$"
 
                 onClicked:{
-
+                    tickerView.visible = false
+                    startView.visible = true
                 }
             }
 
@@ -396,66 +401,17 @@ Window {
         }
     }
 
-    Rectangle {
-        visible: false
+    TickerView{
         id: tickerView
+
+        visible: false
+
         anchors.top: titleBar.bottom
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
 
-        color: "transparent"
-
-        Component {
-            id: contactDelegate
-
-            Rectangle {
-                width: priceListView.width
-
-                color: {
-                    if(index % 2 === 0){
-                        Material.color(baseColor, Material.Shade100)
-                    }else{
-                        Material.color(baseColor, Material.Shade200)
-                    }
-                }
-
-                height: 30
-
-                Row{
-                    anchors.fill: parent
-                    anchors.margins: 3
-
-                    id: priceInfo
-
-                    spacing: 10
-
-                    Text { anchors.verticalCenter: parent.verticalCenter; text: symbol.toUpperCase(); font.pixelSize: 24 }
-                    Text { anchors.verticalCenter: parent.verticalCenter; text: tickerData.c; font.pixelSize: 18 }
-
-                    Column{
-                        Text{
-                            font.pixelSize: 10
-                            text: tickerData.v
-                        }
-                        Text{
-                            font.pixelSize: 10
-                            text: tickerData.P
-                        }
-                    }
-                }
-            }
-        }
-
-        ListView {
-            clip: true
-            id: priceListView
-            anchors.fill: parent
-            model: priceModel
-            delegate: contactDelegate
-            highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
-            focus: true
-        }
+        model: priceModel
     }
 
     Component.onCompleted: {
